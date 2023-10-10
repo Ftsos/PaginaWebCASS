@@ -1,7 +1,7 @@
 //Slider
 var sliderImg = document.querySelector("#slider")
 var sliderBg = document.querySelector("#slider-background")
-var sliderImgs = ["./public/img/slider/1.jpg", "./public/img/slider/2.jpg", "./public/img/slider/3.jpg", "./public/img/slider/4.jpg"]
+var sliderImgs = ["./img/slider/1.jpg", "./img/slider/2.jpg", "./img/slider/3.jpg", "./img/slider/4.jpg"]
 var sliderIndex = 0
 
 var sliderDots = document.querySelector("#slider-dots-container")

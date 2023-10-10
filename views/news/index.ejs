@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colegio Adventista de San Salvador</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins">
+    <script src="https://kit.fontawesome.com/4a0d788886.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="./css/app.css">
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <ul>
+                <li id="homeLi"><a href="#" id="home"><img src="./img/LogoColegio.png" alt="Logo Colegio Adventista" id="homeLogo"></a></li>
+                <li><a href="#about">¿Quienes Somos?</a></li>
+                <li><a href="#studyPlans">Planes de Estudio</a></li>
+                <li><a href="#news">Noticias</a></li>
+                <li><a href="#contact">Contactanos</a></li>
+            </ul>
+        </div>
+    </header>
+ <div id="news">
+                <h1 id="newsTitle">Noticias </h1>
+                <div id="newsContainer">
+                                                <% data.forEach(post => { %>
+      
+
+          <div class="newsCategory">
+                        <div class="newsCategoryContent">
+                                      <span><%= post.title %></span>
+          <span class="article-list__date"><%= post.createdAt.toDateString() %></span>
+                <div class="newsCategoryText">
+                <%- post.body %>
+                </div>  
+                                <a class="newsCategoryReadMore" href="/post/<%= post._id %>">Lee Mas Aqui</a>
+                            </div> 
+                        </div>
+    <% }) %>
+                  
+
+                    
+
+                    
+                </div>
+    <footer>
+        <div>
+            <a class="footerLink" href="https://www.facebook.com/people/Colegio-Adventista-de-San-Salvador-oficial/100063496301607/" target="_blank" rel="noopener">
+                <i class="fa-brands fa-square-facebook"></i>
+            </a>
+            <span class="footerLink" onclick="navigator.clipboard.writeText('+503 7802 4075').then(() => {Swal.fire( 'Numero Copiado al Portapeles')},() => { 'Error al copiar, intentalo de nuevo'});">
+                <i class="fa-brands fa-whatsapp"></i>
+            </span>
+            <span class="footerLink" onclick="navigator.clipboard.writeText('+503 2566 8193').then(() => {Swal.fire( 'Numero Copiado al Portapeles')},() => { 'Error al copiar, intentalo de nuevo'});">
+                <i class="fa-solid fa-phone"></i>
+            </span>
+        </div>
+        <span>Colegio Adventista de San Salvador</span>
+        <br>
+        <span>Hamilton Alvarado, Angel Lopez, Katherine Lopez, Fernanda Morales, Fabricio Rivera ©. </span>
+    </footer>
+    <script src="./js/main.js"></script>
+</body>
+</html>

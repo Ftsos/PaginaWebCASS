@@ -2,6 +2,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: poppins;
+    background-color: #e6e3e3;
 }
 
 html {
@@ -14,6 +15,9 @@ html {
     box-sizing: border-box;
 }
 
+#editor{
+    background-color: #fff;
+}
 /*
  * Navbar
  */
@@ -297,6 +301,8 @@ html {
     color: #000;
     text-align: center;
     margin: 0em 3em 0.5em 3em;
+    overflow: hidden;
+    height: 59vh;
 }
 
 .newsCategoryContent {

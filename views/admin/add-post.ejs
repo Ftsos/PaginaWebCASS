@@ -1,0 +1,132 @@
+
+
+<a href="/dashboard">&larr; Back</a>
+<div class="admin-title">
+  <h2>Add New Post</h2>
+</div>
+
+<form action="/add-post" method="POST" >
+
+  <label for="title" ><b>Title</b></label>
+  <input type="text" placeholder="Post Title" name="title" id="titleEditPost">
+
+  <label for="body"><b>Content</b></label>
+  <div id="editor"></div>
+
+  <input type="submit" value="Add" class="btn">
+
+</form>
+
+
+<script >
+
+const editor = new EditorJS({
+  tools: {
+  header: {
+          class: Header,
+          inlineToolbar: ['marker', 'link'],
+          config: {
+            placeholder: 'Header'
+          },
+          shortcut: 'CMD+SHIFT+H'
+        },
+
+        /**
+         * Or pass class directly without any configuration
+         */
+        image: SimpleImage,
+
+        list: {
+          class: List,
+          inlineToolbar: true,
+          shortcut: 'CMD+SHIFT+L'
+        },
+
+        checklist: {
+          class: Checklist,
+          inlineToolbar: true,
+        },
+
+        quote: {
+          class: Quote,
+          inlineToolbar: true,
+          config: {
+            quotePlaceholder: 'Enter a quote',
+            captionPlaceholder: 'Quote\'s author',
+          },
+          shortcut: 'CMD+SHIFT+O'
+        },
+
+        warning: Warning,
+
+        marker: {
+          class:  Marker,
+          shortcut: 'CMD+SHIFT+M'
+        },
+
+        code: {
+          class:  CodeTool,
+          shortcut: 'CMD+SHIFT+C'
+        },
+
+        delimiter: Delimiter,
+
+        inlineCode: {
+          class: InlineCode,
+          shortcut: 'CMD+SHIFT+C'
+        },
+
+        linkTool: LinkTool,
+
+        embed: Embed,
+
+        table: {
+          class: Table,
+          inlineToolbar: true,
+          shortcut: 'CMD+ALT+T'
+        },  
+    	raw: RawTool
+  },
+  holder: 'editor',
+  
+})
+
+var form = document.querySelector("form")
+
+form.addEventListener("submit", (e)=> {
+	e.preventDefault();
+	let titleEditPostText = document.querySelector("#titleEditPost").value
+	editor.save().then((outputData) => {
+  console.log('Article data: ', outputData)
+  	 postFetch("/add-post", {
+  		title: titleEditPostText,
+  		body: JSON.stringify(outputData)
+  	}).then(res => {
+
+  		console.log(res)
+  		window.href = "./dashboard"
+  	})
+}).catch((error) => {
+  console.log('Saving failed: ', error)
+});
+})
+
+async function postFetch(url = "", data = {}) {
+  // Default options are marked with *
+  const response = await fetch(url, {
+    method: "POST", // *GET, POST, PUT, DELETE, etc.
+    mode: "cors", // no-cors, *cors, same-origin
+    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: "same-origin", // include, *same-origin, omit
+    headers: {
+      "Content-Type": "application/json",
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    redirect: "follow", // manual, *follow, error
+    referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+    body: JSON.stringify(data), // body data type must match "Content-Type" header
+  });
+  return response.json(); // parses JSON response into native JavaScript objects
+}
+
+</script>
