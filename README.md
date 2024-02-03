@@ -1,5 +1,5 @@
 # PaginaWebCASS
-A Landing Page for the Colegio Adventista de San Salvador
+A Landing Page for the CASS
 
 # Live Preview
 https://ftsos.github.io/PaginaWebCASS/
